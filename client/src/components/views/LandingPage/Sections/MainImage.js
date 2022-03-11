@@ -1,5 +1,6 @@
 import React from 'react';
 import { FaPlay } from 'react-icons/fa';
+import './LandingPage.css';
 
 
 function MainImage(props) {
@@ -14,11 +15,20 @@ function MainImage(props) {
         }}>
             <div style={{height: '500px'}} > 
                 <div style={{ position: 'absolute', bottom: '9rem', width:'100%', maxWidth: '500px', marginLeft: '3rem'}}>
-                    <div style={{fontSize:'15px', border:'1px solid white', padding:'6px', width: '120px', marginBottom:'6px' }}>
-                        <a style={{ color: 'white'}} hrer='#'><FaPlay style={{position:'relative', top:'2px', margin:'0 5px'}} />    Play trailer</a>
+                    <div className='playBtn'>
+                        <a href='#'><FaPlay style={{position:'relative', top:'2px', margin:'0 5px'}} />    Play trailer</a>
                     </div>
-                    <h1 style={{ color: 'white'}}> {props.title} </h1> 
+                    <h1 style={{ color: 'white', marginTop:'10px'}}> {props.title} </h1> 
                     <p style={{ color: 'white', fontSize: '1rem'}}> {props.text}</p>
+                    <div style={{ display:'flex', color:'white', fontWeight:'bold', fontStyle:'italic'}} >
+                        <p style={{ marginRight:'155px'}}>{props.str_director}</p>
+                        <p>{props.str_runtime}</p>
+                    </div>
+                    <div style={{ display:'flex', color:'white', position:'relative', bottom:'15px'}} >
+                        <p style={{ marginRight:'100px'}}>{props.director}</p>
+                        <p>{props.runTimeInfo}</p>
+                    </div>
+                    
                 </div>
             </div>
            

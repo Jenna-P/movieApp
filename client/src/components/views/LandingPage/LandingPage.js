@@ -6,6 +6,7 @@ import { API_KEY} from '../../Config';
 import MainImage from './Sections/MainImage';
 import GridCards from '../../commons/GridCards';
 import {Row} from 'antd';
+import './Sections/LandingPage.css';
 
 function LandingPage() {
 
@@ -66,7 +67,7 @@ function LandingPage() {
         </div>
 
         <div style={{ display: 'flex', justifyContent: 'center', margin: '30px 0 40px 0'}}>
-            <button style={{ backgroundColor: 'rgb(223, 199, 22)', border:'none', borderRadius: '5px', height:'30px', cursor:'pointer'}} onClick={loadMoreItems}>Load More</button>
+            <button className='loadBtn' onClick={loadMoreItems}>Load More</button>
         </div>
     </div>
     )

@@ -30,6 +30,10 @@ function MovieDetail(props) {
        image={`https://image.tmdb.org/t/p/w1280/${Movie.backdrop_path}`} 
        title={Movie.original_title}
        text={Movie.overview}
+       str_runtime='Runtime'
+       runTimeInfo={Movie.runtime} 
+       str_director='Director'
+       director='Steven Spielberg'
        />
         }
 
