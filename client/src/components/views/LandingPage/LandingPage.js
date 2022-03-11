@@ -18,7 +18,7 @@ function LandingPage() {
       `)
     
 
-    console.log('data', results);
+   // console.log('data', results);
     setMovies([...Movies, ...results]);
     setMainMovieImage(results[0]);
     setCurrentPage(page);
@@ -28,7 +28,7 @@ function LandingPage() {
     fetchMovies();
   }, [])
 
-  const loadMoreItems = async () => {
+  const loadMoreItems = () => {
     fetchMovies();
   }
   
