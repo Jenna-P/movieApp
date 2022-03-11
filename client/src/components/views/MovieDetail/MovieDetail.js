@@ -39,8 +39,11 @@ function MovieDetail(props) {
 
         <br />
         {/* cast grid */}
-        <div style={{ display:'flex', justifyContent: 'center', margin: '2rem'}}>
-                <button>Casts</button>
+        <div style={{ display:'flex', justifyContent: 'flex-start'}}>
+                <p style={{ color:'white', fontSize:'24px'}}>Top Billed Cast</p>
+        </div>
+        <div style={{ display:'flex', justifyContent: 'flex-start'}}>
+                <button style={{ fontSize:'20px'}}>Full casts & Crew</button>
         </div>
 
       </div>

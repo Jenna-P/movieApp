@@ -1,4 +1,6 @@
 import React from 'react';
+import { FaPlay } from 'react-icons/fa';
+
 
 function MainImage(props) {
     return (
@@ -10,12 +12,16 @@ function MainImage(props) {
                      positon: 'relative',
                      
         }}>
-            <div style={{height: '500px'}} >
+            <div style={{height: '500px'}} > 
                 <div style={{ position: 'absolute', bottom: '9rem', width:'100%', maxWidth: '500px', marginLeft: '3rem'}}>
-                    <h1 style={{ color: 'white'}}> {props.title}</h1>
+                    <div style={{fontSize:'15px', border:'1px solid white', padding:'6px', width: '120px', marginBottom:'6px' }}>
+                        <a style={{ color: 'white'}} hrer='#'><FaPlay style={{position:'relative', top:'2px', margin:'0 5px'}} />    Play trailer</a>
+                    </div>
+                    <h1 style={{ color: 'white'}}> {props.title} </h1> 
                     <p style={{ color: 'white', fontSize: '1rem'}}> {props.text}</p>
                 </div>
             </div>
+           
         </div>
     )
 
