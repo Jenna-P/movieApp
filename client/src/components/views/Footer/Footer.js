@@ -8,7 +8,7 @@ function Footer() {
             flexDirection: 'column', alignItems: 'center',
             justifyContent: 'center', fontSize:'1rem'
         }}>
-           <p> Code My Dream  <Icon type="smile" /></p>
+           <p style={{ color:'rgb(223, 199, 22)'}}> Code My Dream  <Icon type="smile" /></p>
         </div>
     )
 }

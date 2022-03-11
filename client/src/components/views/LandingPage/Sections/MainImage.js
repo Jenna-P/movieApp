@@ -7,7 +7,8 @@ function MainImage(props) {
                      backgroundSize: '100%, cover',
                      backgroundPositon: 'center, center',
                      width: '100%',
-                     positon: 'relative'
+                     positon: 'relative',
+                     
         }}>
             <div style={{height: '500px'}} >
                 <div style={{ position: 'absolute', bottom: '9rem', width:'100%', maxWidth: '500px', marginLeft: '3rem'}}>

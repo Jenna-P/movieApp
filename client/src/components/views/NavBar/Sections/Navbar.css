@@ -1,11 +1,11 @@
-@import '~antd/dist/antd.css';
+@import "~antd/dist/antd.css";
 
 .menu {
   padding: 0 20px;
-  border-bottom: solid 1px #e8e8e8;
+  border-bottom: solid 1px #181818;
   overflow: auto;
-  box-shadow: 0 0 30px #f3f1f1;
-  background-color: white;
+  box-shadow: 0 0 5px black;
+  background-color: #181818;
 }
 
 .menu__logo {
@@ -17,6 +17,7 @@
   display: inline-block;
   font-size: 20px;
   padding: 19px 20px;
+  color: rgb(223, 199, 22);
 }
 
 .menu__container .ant-menu-item {
