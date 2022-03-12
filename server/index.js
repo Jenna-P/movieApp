@@ -3,7 +3,7 @@ const app = express();
 const path = require("path");
 const cors = require('cors')
 
-const bodyParser = require("body-parser");
+//const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
 
 const config = require("./config/key");
@@ -27,10 +27,12 @@ app.use(cors())
 
 //to not get any deprecation warning or error
 //support parsing of application/x-www-form-urlencoded post data
-app.use(bodyParser.urlencoded({ extended: true }));
-//to get json data
-// support parsing of application/json type post data
-app.use(bodyParser.json());
+// app.use(bodyParser.urlencoded({ extended: true }));
+// //to get json data
+// // support parsing of application/json type post data
+// app.use(bodyParser.json());
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
 app.use('/api/users', require('./routes/users'));

@@ -16,19 +16,27 @@ function LandingPage() {
   const [MainMovieImage, setMainMovieImage] = useState(null);
   const [CurrentPage, setCurrentPage] = useState(0);
   const [searchKey, setSearchKey] = useState("");
-
+ 
+  // &page=1
     const fetchMovies = async (searchKey) => {
-         const SEARCH_API = `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&language=en-US&query=${searchKey}&page=1`
+         const SEARCH_API = `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&language=en-US&query=${searchKey}`
          const DISCOVER_API = `https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}&language=en-US&page=${CurrentPage+1}`
 
       const type = searchKey ? SEARCH_API : DISCOVER_API ;  
       const {data: {results, page}} = await axios.get(`${type}`);
-    
+
 
     console.log('data', results);
-    setMovies(results, [...Movies, ...results]);
+    if(searchKey){
+      setMovies(results);
+      //console.log(Movies[0].id);
+    } else {
+      setMovies([...Movies, ...results]);}
+    
     setMainMovieImage(results[0]);
     setCurrentPage(page);
+    
+    
   }
 
   useEffect( () => {
@@ -73,13 +81,16 @@ function LandingPage() {
             <Row gutter={[16, 16]}>
               {Movies && Movies.map((movie, index) =>  (
                 <React.Fragment key={index}>
-                  <GridCards image={movie.poster_path ? `https://image.tmdb.org/t/p/w500/${movie.poster_path}` : null} 
+                  <GridCards 
+                            landingPage
+                            image={movie.poster_path ? `https://image.tmdb.org/t/p/w500/${movie.poster_path}` : null} 
                             movieId={movie.id}
                             movieName={movie.original_title}
                   />
                 </React.Fragment>
           )) }
           </Row>
+          
             
         </div>
 

@@ -16,7 +16,6 @@ function MovieDetail(props) {
      const [Crews, setCrews] = useState([]);
      const [Casts, setCasts] = useState([]);
      
-
     const fetchMovies = async () => {
         
         const info = await axios.get(`https://api.themoviedb.org/3/movie/${props.match.params.movieID}?api_key=${API_KEY}
@@ -25,31 +24,23 @@ function MovieDetail(props) {
         const credits = await axios.get(`https://api.themoviedb.org/3/movie/${props.match.params.movieID}/credits?api_key=${API_KEY}
         `)   
 
-        
-
-    
-       
         console.log(credits.data.cast);
         setMovie(info.data);
         setCrews(credits.data.crew);
         setCasts(credits.data.cast);
-        
-
     }
 
     useEffect( () => {
-        fetchMovies();
-      }, [])
-
-      
+      fetchMovies();
+    }, [])
 
   return (
     <div style={{ width: '100%', margin: '0'}}>
       {/*Header */}
-      
-      
+  
       {Movie && Crews && Crews.filter(person => person.job === "Director").map(filteredPerson => (
        <MainImage 
+       key={Movie.id}
        image={`https://image.tmdb.org/t/p/w1280${Movie.backdrop_path}`} 
        title={Movie.original_title}
        text={Movie.overview}
@@ -71,11 +62,11 @@ function MovieDetail(props) {
         </div>
         <div>
         <Row gutter={[16, 16]}>
-              {Casts && Casts.slice(0, 6).map((movie, index) =>  (
-                <React.Fragment key={index}>
-                  <GridCards image={movie.profile_path ? `https://image.tmdb.org/t/p/w500/${movie.profile_path}` : null} 
-                            name={movie.original_name}
-                            character={movie.character}
+              {Casts && Casts.slice(0, 6).map((cast) =>  (
+                <React.Fragment key={cast.id}>
+                  <GridCards image={cast.profile_path ? `https://image.tmdb.org/t/p/w500/${cast.profile_path}` : null} 
+                            name={cast.original_name}
+                            character={cast.character}
                             
                   />
                 </React.Fragment>
