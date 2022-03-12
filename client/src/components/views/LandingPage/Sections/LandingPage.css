@@ -24,3 +24,37 @@
   color: black;
   border: 1px solid rgb(223, 199, 22);
 }
+
+.upperLine-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.search-wrapper {
+  border: 1px solid white;
+  height: 30px;
+  width: 300px;
+}
+.search-wrapper input {
+  background-color: transparent;
+  height: 29px;
+  margin: 0;
+  width: 85%;
+  border: none;
+  color: white;
+}
+
+.search-wrapper input:focus {
+  outline: none;
+  background-color: transparent;
+}
+
+.search-wrapper .submit-search {
+  width: 15%;
+  height: 27px;
+  background-color: transparent;
+  color: rgb(223, 199, 22);
+  border: none;
+  cursor: pointer;
+}

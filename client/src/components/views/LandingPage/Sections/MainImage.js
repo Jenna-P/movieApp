@@ -14,7 +14,7 @@ function MainImage(props) {
                      
         }}>
             <div style={{height: '500px'}} > 
-                <div style={{ position: 'absolute', bottom: '9rem', width:'100%', maxWidth: '500px', marginLeft: '3rem'}}>
+                <div style={{ position: 'absolute', top:'30%', width:'100%', maxWidth: '500px', marginLeft: '3rem'}}>
                     <div className='playBtn'>
                         <a href='#'><FaPlay style={{position:'relative', top:'2px', margin:'0 5px'}} />    Play trailer</a>
                     </div>
@@ -25,8 +25,8 @@ function MainImage(props) {
                         <p>{props.str_runtime}</p>
                     </div>
                     <div style={{ display:'flex', color:'white', position:'relative', bottom:'15px'}} >
-                        <p style={{ marginRight:'100px'}}>{props.director}</p>
-                        <p>{props.runTimeInfo}</p>
+                        <p style={{ position:'absolute'}}>{props.director}</p>
+                        <p style={{ position:'relative', left: '42%'}}>{props.runTimeInfo}</p>
                     </div>
                     
                 </div>
