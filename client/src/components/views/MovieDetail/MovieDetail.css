@@ -1,0 +1,15 @@
+.button-wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 0px;
+}
+
+.viewMoreBtn {
+  padding: 0px;
+  background-color: transparent;
+  color: rgb(223, 199, 22);
+  border: none;
+  cursor: pointer;
+}

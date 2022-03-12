@@ -2,6 +2,10 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios';
 import {API_KEY} from '../../Config';
 import MainImage from '../LandingPage/Sections/MainImage';
+import GridCards from '../../commons/GridCards';
+import {Row} from 'antd';
+import './MovieDetail.css'
+import { FaChevronDown } from 'react-icons/fa';
 
 
 
@@ -10,8 +14,8 @@ function MovieDetail(props) {
 
     const [Movie, setMovie] = useState([]);
      const [Crews, setCrews] = useState([]);
-    // const [Casts, setCasts] = useState(0);
-
+     const [Casts, setCasts] = useState([]);
+     
 
     const fetchMovies = async () => {
         
@@ -22,11 +26,13 @@ function MovieDetail(props) {
         `)   
 
         
+
     
        
-        console.log(credits.data);
+        console.log(credits.data.cast);
         setMovie(info.data);
         setCrews(credits.data.crew);
+        setCasts(credits.data.cast);
         
 
     }
@@ -34,6 +40,8 @@ function MovieDetail(props) {
     useEffect( () => {
         fetchMovies();
       }, [])
+
+      
 
   return (
     <div style={{ width: '100%', margin: '0'}}>
@@ -61,9 +69,23 @@ function MovieDetail(props) {
         <div style={{ display:'flex', justifyContent: 'flex-start'}}>
                 <p style={{ color:'white', fontSize:'24px'}}>Top Billed Cast</p>
         </div>
+        <div>
+        <Row gutter={[16, 16]}>
+              {Casts && Casts.slice(0, 6).map((movie, index) =>  (
+                <React.Fragment key={index}>
+                  <GridCards image={movie.profile_path ? `https://image.tmdb.org/t/p/w500/${movie.profile_path}` : null} 
+                            name={movie.original_name}
+                            character={movie.character}
+                            
+                  />
+                </React.Fragment>
+          )) }
+          </Row>
+        </div>
         
-        <div style={{ display:'flex', justifyContent: 'flex-start'}}>
-                <button style={{ fontSize:'20px'}}>Full casts & Crew</button>
+        <div className="button-wrapper">
+                <button className="viewMoreBtn">View More</button>
+                <FaChevronDown className="viewMoreBtn" />
         </div>
 
       </div>
