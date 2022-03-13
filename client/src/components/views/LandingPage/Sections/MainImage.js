@@ -15,11 +15,11 @@ function MainImage(props) {
                      
         }}>
             <div style={{height: '500px'}} > 
-                <div style={{ position: 'absolute', top:'30%', width:'100%', maxWidth: '500px', marginLeft: '3rem'}}>
+                <div style={{ display: 'flex', flexDirection:'column', justifyContent:'center', width:'100%', maxWidth: '500px', marginLeft: '4rem', position:'absolute', top:'250px'}}>
                     <div className='playBtn'>
-                        <button><FaPlay style={{position:'relative', top:'2px', margin:'0 5px'}} />    Play trailer</button>
+                        <button><FaPlay style={{margin:'0 5px'}} />    Play trailer</button>
                     </div>
-                    <h1 style={{ color: 'white', marginTop:'10px'}}> {props.title} </h1> 
+                    <h1 style={{ color: 'white', marginTop:'0px'}}> {props.title} </h1> 
                     <p style={{ color: 'white', fontSize: '1rem'}}> {props.text}</p>
                     <div style={{ display:'flex', color:'white', fontWeight:'bold', fontStyle:'italic'}} >
                         <p style={{ marginRight:'155px'}}>{props.str_director}</p>

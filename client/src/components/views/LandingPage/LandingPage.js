@@ -17,6 +17,7 @@ function LandingPage() {
   const [CurrentPage, setCurrentPage] = useState(0);
   const [searchKey, setSearchKey] = useState("");
  
+ 
   // &page=1
     const fetchMovies = async (searchKey) => {
          const SEARCH_API = `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&language=en-US&query=${searchKey}`
@@ -53,7 +54,7 @@ function LandingPage() {
   }
   
     return (
-        <div style={{ width: '100%', margin: '0'}}>
+      <div style={{ width: '100%', margin: '0'}}>
 
         {/* Main Image */}
        {MainMovieImage &&

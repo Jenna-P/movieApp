@@ -13,8 +13,11 @@ import { FaChevronDown } from 'react-icons/fa';
 function MovieDetail(props) {
 
     const [Movie, setMovie] = useState([]);
-     const [Crews, setCrews] = useState([]);
-     const [Casts, setCasts] = useState([]);
+    const [Crews, setCrews] = useState([]);
+    const [Casts, setCasts] = useState([]);
+    const [ShowMoreCasts, setShowMoreCasts] = useState([]);
+    
+    
      
     const fetchMovies = async () => {
         
@@ -24,15 +27,25 @@ function MovieDetail(props) {
         const credits = await axios.get(`https://api.themoviedb.org/3/movie/${props.match.params.movieID}/credits?api_key=${API_KEY}
         `)   
 
+        let slice = credits.data.cast.slice(0, 6);
+        let showMore = credits.data.cast.slice(7, credits.data.cast.length);
+
         console.log(credits.data.cast);
         setMovie(info.data);
         setCrews(credits.data.crew);
-        setCasts(credits.data.cast);
+        //setCasts(credits.data.cast);
+        setCasts(slice);
+        setShowMoreCasts(showMore);
     }
 
-    useEffect( () => {
+    useEffect(() => {
       fetchMovies();
     }, [])
+
+    const showmore = () => {
+     
+      setCasts([...Casts, ...ShowMoreCasts]);
+  }
 
   return (
     <div style={{ width: '100%', margin: '0'}}>
@@ -62,20 +75,22 @@ function MovieDetail(props) {
         </div>
         <div>
         <Row gutter={[16, 16]}>
-              {Casts && Casts.slice(0, 6).map((cast) =>  (
+              {Casts && Casts.map((cast) =>  (
                 <React.Fragment key={cast.id}>
-                  <GridCards image={cast.profile_path ? `https://image.tmdb.org/t/p/w500/${cast.profile_path}` : null} 
+                  <GridCards image={cast.profile_path ? `https://image.tmdb.org/t/p/w500/${cast.profile_path}` : `https://www.finsoe.dk/wp-content/uploads/2020/02/blank-profile-picture-973460_640.png`} 
                             name={cast.original_name}
                             character={cast.character}
-                            
                   />
                 </React.Fragment>
           )) }
           </Row>
+          
         </div>
         
         <div className="button-wrapper">
-                <button className="viewMoreBtn">View More</button>
+       
+                <button className="viewMoreBtn" onClick={showmore}>View More</button>
+             
                 <FaChevronDown className="viewMoreBtn" />
         </div>
 
