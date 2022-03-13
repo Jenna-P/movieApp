@@ -1,0 +1,29 @@
+.app h2 {
+  color: white;
+  font-size: 30px;
+}
+
+.ant-form-item-control input {
+  background-color: transparent;
+  border: 1px solid rgb(223, 199, 22);
+  height: 40px;
+}
+
+.ant-form-item-control input:hover,
+.ant-form-item-control input:focus {
+  outline: 1px solid rgb(223, 199, 22);
+  border: 1px solid rgb(223, 199, 22);
+}
+
+button.ant-btn-primary {
+  color: black;
+  background-color: rgb(223, 199, 22);
+  border-color: rgb(223, 199, 22);
+  text-shadow: 0 -1px 0 rgb(0 0 0 / 12%);
+  -webkit-box-shadow: 0 2px 0 rgb(0 0 0 / 5%);
+  box-shadow: 0 2px 0 rgb(0 0 0 / 5%);
+}
+
+.ant-form-item-label > label {
+  color: white !important;
+}

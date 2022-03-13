@@ -16,9 +16,8 @@ function LandingPage() {
   const [MainMovieImage, setMainMovieImage] = useState(null);
   const [CurrentPage, setCurrentPage] = useState(0);
   const [searchKey, setSearchKey] = useState("");
- 
- 
-  // &page=1
+
+  
     const fetchMovies = async (searchKey) => {
          const SEARCH_API = `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&language=en-US&query=${searchKey}`
          const DISCOVER_API = `https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}&language=en-US&page=${CurrentPage+1}`
@@ -36,8 +35,7 @@ function LandingPage() {
     
     setMainMovieImage(results[0]);
     setCurrentPage(page);
-    
-    
+  
   }
 
   useEffect( () => {
