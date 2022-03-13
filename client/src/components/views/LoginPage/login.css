@@ -1,0 +1,20 @@
+h2.ant-typography,
+.ant-typography h2 {
+  margin-bottom: 0.5em;
+  color: white !important;
+  font-weight: 600;
+  font-size: 30px;
+  line-height: 1.35;
+}
+
+.login-form-forgot {
+  color: white;
+}
+
+.login-form-forgot:hover {
+  color: rgb(223, 199, 22);
+}
+
+.ant-checkbox-wrapper {
+  color: white !important;
+}

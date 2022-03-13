@@ -5,6 +5,7 @@ import { Formik } from 'formik';
 import * as Yup from 'yup';
 import { Form, Icon, Input, Button, Checkbox, Typography } from 'antd';
 import { useDispatch } from "react-redux";
+import './login.css';
 
 const { Title } = Typography;
 
@@ -134,7 +135,7 @@ function LoginPage(props) {
                     Log in
                 </Button>
                 </div>
-                Or <a href="/register">register now!</a>
+                <a className="login-form-forgot" href="/register">register now!</a>
               </Form.Item>
             </form>
           </div>
