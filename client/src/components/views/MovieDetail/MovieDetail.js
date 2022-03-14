@@ -6,8 +6,7 @@ import GridCards from '../../commons/GridCards';
 import {Row} from 'antd';
 import './MovieDetail.css'
 import { FaChevronDown } from 'react-icons/fa';
-
-
+import Youtube from 'react-youtube'
 
 
 function MovieDetail(props) {
@@ -15,32 +14,37 @@ function MovieDetail(props) {
     const [Movie, setMovie] = useState([]);
     const [Crews, setCrews] = useState([]);
     const [Casts, setCasts] = useState([]);
-    const [ShowMoreCasts, setShowMoreCasts] = useState([]);
-    
+    const [ShowMoreCasts, setShowMoreCasts] = useState([]); 
+    const [Videos, setVideos] = useState(null);
     
      
     const fetchMovies = async () => {
         
         const info = await axios.get(`https://api.themoviedb.org/3/movie/${props.match.params.movieID}?api_key=${API_KEY}
         `)
-
         const credits = await axios.get(`https://api.themoviedb.org/3/movie/${props.match.params.movieID}/credits?api_key=${API_KEY}
         `)   
+        const videoData = await axios.get(`https://api.themoviedb.org/3/movie/${props.match.params.movieID}/videos?api_key=${API_KEY}
+        `)
+
+        if (videoData && videoData.data.results) {
+          const trailer = videoData.data.results.find(vid => vid.name === "Official Trailer" || vid.name === "Main Trailer")
+          setVideos(trailer ? trailer : videoData.data.results[0])
+      }
 
         let slice = credits.data.cast.slice(0, 6);
         let showMore = credits.data.cast.slice(7, credits.data.cast.length);
-
-        console.log(credits.data.cast);
+        //console.log('ccc', info.data);
         setMovie(info.data);
         setCrews(credits.data.crew);
-        //setCasts(credits.data.cast);
         setCasts(slice);
         setShowMoreCasts(showMore);
     }
 
     useEffect(() => {
       fetchMovies();
-    }, [])
+        // eslint-disable-line react-hooks/exhaustive-deps
+    }, [props.match.params.movieID])
 
     const showmore = () => {
      
@@ -50,8 +54,7 @@ function MovieDetail(props) {
   return (
     <div style={{ width: '100%', margin: '0'}}>
       {/*Header */}
-  
-      {Movie && Crews && Crews.filter(person => person.job === "Director").map(filteredPerson => (
+      {Movie && Videos && Crews && Crews.filter(person => person.job === "Director").map(filteredPerson => (
        <MainImage 
        key={Movie.id}
        image={`https://image.tmdb.org/t/p/w1280${Movie.backdrop_path}`} 
@@ -61,13 +64,13 @@ function MovieDetail(props) {
        runTimeInfo={Movie.runtime} 
        str_director='Director'
        director={filteredPerson.name}
+       video_key={Videos.key} 
        />
        ))}
 
       {/* body */}
       <div style={{ width: '85%', margin: '1rem auto'}}>
-        {/* Movie info */}
-
+       
         <br />
         {/* cast grid */}
         <div style={{ display:'flex', justifyContent: 'flex-start'}}>

@@ -30,6 +30,7 @@
     "react-grid-carousel": "^1.0.1",
     "react-icons": "^4.3.1",
     "react-redux": "^5.0.7",
+    "react-youtube": "^7.14.0",
     "saslprep": "^1.0.3",
     "supports-color": "^7.1.0"
   },

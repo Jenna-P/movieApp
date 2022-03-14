@@ -7,7 +7,7 @@ import MainImage from './Sections/MainImage';
 import GridCards from '../../commons/GridCards';
 import {Row} from 'antd';
 import './Sections/LandingPage.css';
-import { FaSearch } from 'react-icons/fa';
+import { FaSearch, FaPlay } from 'react-icons/fa';
 
 
 function LandingPage() {
@@ -18,27 +18,24 @@ function LandingPage() {
   const [searchKey, setSearchKey] = useState("");
 
   
-    const fetchMovies = async (searchKey) => {
-         const SEARCH_API = `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&language=en-US&query=${searchKey}`
-         const DISCOVER_API = `https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}&language=en-US&page=${CurrentPage+1}`
+    const fetchMovies =  async (searchKey) => {
+      const SEARCH_API = `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&language=en-US&query=${searchKey}`
+      const DISCOVER_API = `https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}&language=en-US&page=${CurrentPage+1}`
 
       const type = searchKey ? SEARCH_API : DISCOVER_API ;  
       const {data: {results, page}} = await axios.get(`${type}`);
 
 
-    console.log('data', results);
+    //console.log('data', results);
     if(searchKey){
       setMovies(results);
-      //console.log(Movies[0].id);
     } else {
       setMovies([...Movies, ...results]);}
-    
     setMainMovieImage(results[0]);
     setCurrentPage(page);
-  
   }
 
-  useEffect( () => {
+  useEffect(() => {
     fetchMovies();
   }, [])
 
@@ -51,11 +48,15 @@ function LandingPage() {
     fetchMovies(searchKey);
   }
   
+  function say() {
+    console.log("hello");
+  }
     return (
       <div style={{ width: '100%', margin: '0'}}>
 
         {/* Main Image */}
-       {MainMovieImage &&
+       
+       {MainMovieImage && 
        <MainImage 
        image={`https://image.tmdb.org/t/p/w1280/${MainMovieImage.backdrop_path}`} 
        title={MainMovieImage.original_title}
