@@ -64,8 +64,8 @@
 .close-video {
   position: absolute;
   z-index: 1;
-  bottom: 160px;
-  right: 30px;
+  top: 60px;
+  right: 170px;
   margin: 20px 0;
   background: #0f1014;
   color: white;

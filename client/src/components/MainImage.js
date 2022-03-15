@@ -47,7 +47,7 @@ function MainImage(props) {
                             }
                         }
                     />
-                <button onClick={() => setPlaying(false)} className={"button close-video"}>Close
+                <button onClick={() => setPlaying(false)} className={"button close-video"}>X
                 </button>
                     
                 </div> 
