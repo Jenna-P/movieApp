@@ -1,0 +1,15 @@
+.favBtn {
+  position: relative;
+  bottom: 15px;
+  width: 130px;
+  padding: 7px;
+  border-color: white;
+  background-color: transparent;
+  color: rgb(223, 199, 22);
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.favBtn span {
+  margin-left: 7px;
+}

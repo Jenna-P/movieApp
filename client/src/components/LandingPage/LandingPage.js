@@ -2,7 +2,7 @@ import React from 'react'
 //import { FaCode } from "react-icons/fa";
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import { API_KEY} from '../Config';
+import { API_KEY, API_URL } from '../Config';
 import MainImage from '../MainImage';
 import GridCards from '../GridCards';
 import {Row} from 'antd';
@@ -17,23 +17,21 @@ function LandingPage() {
   const [CurrentPage, setCurrentPage] = useState(0);
   const [searchKey, setSearchKey] = useState("");
   const [VideoData, setVideoData] = useState(null);
-
   
     const fetchMovies =  async (searchKey) => {
-      const SEARCH_API = `https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&language=en-US&query=${searchKey}`
-      const DISCOVER_API = `https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}&language=en-US&page=${CurrentPage+1}`
+      const SEARCH_API = `${API_URL}/search/movie?api_key=${API_KEY}&language=en-US&query=${searchKey}`
+      const DISCOVER_API = `${API_URL}/movie/popular?api_key=${API_KEY}&language=en-US&page=${CurrentPage+1}`
 
       const type = searchKey ? SEARCH_API : DISCOVER_API ;  
       const {data: {results, page}} = await axios.get(`${type}`);
 
-      const videoData = await axios.get( `https://api.themoviedb.org/3/movie/${results[0].id}/videos?api_key=${API_KEY}
+      const videoData = await axios.get( `${API_URL}/movie/${results[0].id}/videos?api_key=${API_KEY}
       `)
       if (videoData && videoData.data.results) {
         const trailer = videoData.data.results.find(vid => vid.name === "Official Trailer" || vid.name === "Main Trailer")
         setVideoData(trailer ? trailer : videoData.data.results[0])
     }
-     
-    //console.log('data', results);
+ 
     if(searchKey){
       setMovies(results);
     } else {
@@ -55,9 +53,6 @@ function LandingPage() {
     fetchMovies(searchKey);
   }
   
-  function say() {
-    console.log("hello");
-  }
     return (
       <div style={{ width: '100%', margin: '0'}}>
 
@@ -84,6 +79,7 @@ function LandingPage() {
               </div>
             </div>
             <hr />
+
             {/*Movie Grid Card */}
             
             <Row gutter={[16, 16]}>
@@ -98,10 +94,7 @@ function LandingPage() {
                 </React.Fragment>
           )) }
           </Row>
-          
-            
         </div>
-
         <div style={{ display: 'flex', justifyContent: 'center', margin: '30px 0 40px 0'}}>
             <button className='loadBtn' onClick={loadMoreItems}>Load More</button>
         </div>

@@ -18,3 +18,9 @@ h2.ant-typography,
 .ant-checkbox-wrapper {
   color: white !important;
 }
+
+.ant-btn-primary:hover,
+.ant-btn-primary:focus {
+  color: #fff;
+  background-color: rgb(223, 199, 22);
+}

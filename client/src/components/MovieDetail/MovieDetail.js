@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios';
-import {API_KEY} from '../Config';
+import {API_KEY, API_URL } from '../Config';
 import MainImage from '../MainImage';
 import GridCards from '../GridCards';
 import {Row} from 'antd';
 import './MovieDetail.css'
 import { FaChevronDown } from 'react-icons/fa';
+import Favorite from '../Favorite/Favorite';
 
 
 function MovieDetail(props) {
@@ -22,19 +23,18 @@ function MovieDetail(props) {
         
       let movieId = props.match.params.movieID;
 
-        const info = await axios.get(`https://api.themoviedb.org/3/movie/${movieId}?api_key=${API_KEY}
+        const info = await axios.get(`${API_URL}/movie/${movieId}?api_key=${API_KEY}
         `)
-        const credits = await axios.get(`https://api.themoviedb.org/3/movie/${movieId}/credits?api_key=${API_KEY}
+        const credits = await axios.get(`${API_URL}/movie/${movieId}/credits?api_key=${API_KEY}
         `)
         
-        const videoData = await axios.get( `https://api.themoviedb.org/3/movie/${movieId}/videos?api_key=${API_KEY}
+        const videoData = await axios.get( `${API_URL}/movie/${movieId}/videos?api_key=${API_KEY}
         `)
   
         if (videoData && videoData.data.results) {
           const trailer = videoData.data.results.find(vid => vid.name === "Official Trailer" || vid.name === "Main Trailer")
           setVideos(trailer ? trailer : videoData.data.results[0])
       }
-
        
         let slice = credits.data.cast.slice(0, 6);
         let showMore = credits.data.cast.slice(7, credits.data.cast.length);
@@ -72,14 +72,13 @@ function MovieDetail(props) {
        video_key={Videos.key} 
        />
        ))}
-
       {/* body */}
       <div style={{ width: '85%', margin: '1rem auto'}}>
-       
         <br />
         {/* cast grid */}
-        <div style={{ display:'flex', justifyContent: 'flex-start'}}>
+        <div style={{ display:'flex', justifyContent: 'space-between', alignItems:'center'}}>
                 <p style={{ color:'white', fontSize:'24px'}}>Top Billed Cast</p>
+                <Favorite movieInfo={Movie} movieId={Movie.id} userFrom={localStorage.getItem('userId')} />
         </div>
         <div>
         <Row gutter={[16, 16]}>
@@ -98,7 +97,6 @@ function MovieDetail(props) {
         <div className="button-wrapper">
        
                 <button className="viewMoreBtn" onClick={showmore}>View More</button>
-             
                 <FaChevronDown className="viewMoreBtn" />
         </div>
 

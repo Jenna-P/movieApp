@@ -17,18 +17,18 @@
   background-color: transparent;
 }
 
-button.ant-btn-primary {
+button.ant-btn .ant-btn-submit {
   color: black;
-  background-color: rgb(223, 199, 22);
+  background-color: rgb(223, 199, 22) !important;
   border-color: rgb(223, 199, 22);
   text-shadow: 0 -1px 0 rgb(0 0 0 / 12%);
   -webkit-box-shadow: 0 2px 0 rgb(0 0 0 / 5%);
   box-shadow: 0 2px 0 rgb(0 0 0 / 5%);
 }
 
-button.ant-btn-primary:hover {
-  background-color: transparent;
-  border-color: rgb(223, 199, 22);
+button.ant-btn.ant-btn-submit:hover {
+  background-color: rgb(223, 199, 22);
+  color: black;
 }
 
 .ant-form-item-label > label {
