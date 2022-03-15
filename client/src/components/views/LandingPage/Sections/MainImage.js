@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import { FaPlay } from 'react-icons/fa';
-import axios from 'axios';
-import {API_KEY} from '../../../Config';
 import './LandingPage.css';
 import Youtube from 'react-youtube'
 
@@ -28,7 +26,7 @@ function MainImage(props) {
             {playing ?  
                 <div>
                     <Youtube 
-                        videoId={props.video_key}
+                        videoId={props.video_key ? props.video_key : props.main_key}
                         className={"youtube amru"}
                         containerClassName={"youtube-container amru"}
                         opts={
@@ -49,7 +47,8 @@ function MainImage(props) {
                             }
                         }
                     />
-               
+                <button onClick={() => setPlaying(false)} className={"button close-video"}>Close
+                </button>
                     
                 </div> 
                 : 
@@ -73,10 +72,7 @@ function MainImage(props) {
            
         </div>
     )
-
 }
-
-
 
 export default MainImage
 

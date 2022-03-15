@@ -16,22 +16,27 @@ function MovieDetail(props) {
     const [Casts, setCasts] = useState([]);
     const [ShowMoreCasts, setShowMoreCasts] = useState([]); 
     const [Videos, setVideos] = useState(null);
+    //const [ValidId, setValidId] = useState("");
     
      
     const fetchMovies = async () => {
         
-        const info = await axios.get(`https://api.themoviedb.org/3/movie/${props.match.params.movieID}?api_key=${API_KEY}
-        `)
-        const credits = await axios.get(`https://api.themoviedb.org/3/movie/${props.match.params.movieID}/credits?api_key=${API_KEY}
-        `)   
-        const videoData = await axios.get(`https://api.themoviedb.org/3/movie/${props.match.params.movieID}/videos?api_key=${API_KEY}
-        `)
+      let movieId = props.match.params.movieID;
 
+        const info = await axios.get(`https://api.themoviedb.org/3/movie/${movieId}?api_key=${API_KEY}
+        `)
+        const credits = await axios.get(`https://api.themoviedb.org/3/movie/${movieId}/credits?api_key=${API_KEY}
+        `)
+        
+        const videoData = await axios.get( `https://api.themoviedb.org/3/movie/${movieId}/videos?api_key=${API_KEY}
+        `)
+  
         if (videoData && videoData.data.results) {
           const trailer = videoData.data.results.find(vid => vid.name === "Official Trailer" || vid.name === "Main Trailer")
           setVideos(trailer ? trailer : videoData.data.results[0])
       }
 
+       
         let slice = credits.data.cast.slice(0, 6);
         let showMore = credits.data.cast.slice(7, credits.data.cast.length);
         //console.log('ccc', info.data);
@@ -39,6 +44,7 @@ function MovieDetail(props) {
         setCrews(credits.data.crew);
         setCasts(slice);
         setShowMoreCasts(showMore);
+       
     }
 
     useEffect(() => {

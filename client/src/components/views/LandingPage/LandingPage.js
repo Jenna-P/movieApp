@@ -16,6 +16,7 @@ function LandingPage() {
   const [MainMovieImage, setMainMovieImage] = useState(null);
   const [CurrentPage, setCurrentPage] = useState(0);
   const [searchKey, setSearchKey] = useState("");
+  const [VideoData, setVideoData] = useState(null);
 
   
     const fetchMovies =  async (searchKey) => {
@@ -25,7 +26,13 @@ function LandingPage() {
       const type = searchKey ? SEARCH_API : DISCOVER_API ;  
       const {data: {results, page}} = await axios.get(`${type}`);
 
-
+      const videoData = await axios.get( `https://api.themoviedb.org/3/movie/${results[0].id}/videos?api_key=${API_KEY}
+      `)
+      if (videoData && videoData.data.results) {
+        const trailer = videoData.data.results.find(vid => vid.name === "Official Trailer" || vid.name === "Main Trailer")
+        setVideoData(trailer ? trailer : videoData.data.results[0])
+    }
+     
     //console.log('data', results);
     if(searchKey){
       setMovies(results);
@@ -61,6 +68,7 @@ function LandingPage() {
        image={`https://image.tmdb.org/t/p/w1280/${MainMovieImage.backdrop_path}`} 
        title={MainMovieImage.original_title}
        text={MainMovieImage.overview}
+       main_key={VideoData.key}
        />
         }
         
