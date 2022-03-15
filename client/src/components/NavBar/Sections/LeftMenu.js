@@ -9,6 +9,9 @@ function LeftMenu(props) {
     <Menu.Item key="mail">
       <a style={{ color:'white'}} href="/">Home</a>
     </Menu.Item>
+    <Menu.Item key="favorite">
+      <a style={{ color:'white'}} href="/favorite">Favorite</a>
+    </Menu.Item>
   </Menu>
   )
 }

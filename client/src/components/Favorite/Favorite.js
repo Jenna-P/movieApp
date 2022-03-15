@@ -13,8 +13,7 @@ function Favorite(props) {
     const moviePost = props.movieInfo.backdrop_path
     const movieRunTime = props.movieInfo.runtime
 
-    //const [FavoriteNumber, setFavoriteNumber] = useState(0)
-    const [Favorited, setFavorited] = useState(false)
+    const [Favorited, setFavorited] = useState(false);
     const variables = {
         movieId: movieId,
         userFrom: userFrom,
@@ -64,7 +63,7 @@ function Favorite(props) {
             axios.post('/api/favorite/removeFromFavorite', variables)
                 .then(response => {
                     if (response.data.success) {
-                        setFavorited(!Favorited)
+                        setFavorited(Favorited)
                     } else {
                         alert('Failed to Remove From Favorite')
                     }
@@ -73,10 +72,11 @@ function Favorite(props) {
 
   return (
     <div>
-      {!Favorited ? 
-      <button onClick={onClickFavorite} className='favBtn'><FaHeart style={{position:'relative', top:'2px'}} /><span>   Favorite</span></button>
+      {Favorited ? 
+      <button onClick={removeFavorite} className='favBtn'><FaCheckCircle style={{position:'relative', top:'2px'}} /><span>   Added!</span></button> 
       : 
-      <button onClick={removeFavorite} className='favBtn'><FaCheckCircle style={{position:'relative', top:'2px'}} /><span>   Added!</span></button> }
+      <button onClick={onClickFavorite} className='favBtn'><FaHeart style={{position:'relative', top:'2px'}} /><span>   Favorite</span></button>
+    }
     </div>
   )
 }
