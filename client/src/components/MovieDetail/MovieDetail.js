@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios';
-import {API_KEY} from '../../Config';
-import MainImage from '../LandingPage/Sections/MainImage';
-import GridCards from '../../commons/GridCards';
+import {API_KEY} from '../Config';
+import MainImage from '../MainImage';
+import GridCards from '../GridCards';
 import {Row} from 'antd';
 import './MovieDetail.css'
 import { FaChevronDown } from 'react-icons/fa';
-import Youtube from 'react-youtube'
 
 
 function MovieDetail(props) {

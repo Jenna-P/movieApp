@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { FaPlay } from 'react-icons/fa';
-import './LandingPage.css';
+import './main_style.css';
 import Youtube from 'react-youtube'
 
 
