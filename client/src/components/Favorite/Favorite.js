@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { FaHeart, FaCheckCircle } from 'react-icons/fa';
+import { FaHeart, FaRegHeart } from 'react-icons/fa';
 import './favorite.css';
 import axios from 'axios';
 import { useSelector } from 'react-redux';
@@ -7,13 +7,14 @@ import { useSelector } from 'react-redux';
 function Favorite(props) {
     const user = useSelector(state => state.user)
 
-    const movieId = props.movieId
+    const movieId = props.movieId  //params Movie id
     const userFrom = props.userFrom
     const movieTitle = props.movieInfo.title
     const moviePost = props.movieInfo.backdrop_path
     const movieRunTime = props.movieInfo.runtime
 
     const [Favorited, setFavorited] = useState(false);
+
     const variables = {
         movieId: movieId,
         userFrom: userFrom,
@@ -23,16 +24,7 @@ function Favorite(props) {
     }
 
     useEffect(() => {
-
-        // axios.post('/api/favorite/favoriteNumber', variables)
-        //     .then(response => {
-        //         if (response.data.success) {
-        //             setFavoriteNumber(response.data.subscribeNumber)
-        //         } else {
-        //             alert('Failed to get Favorite Number')
-        //         }
-        //     })
-
+      
         axios.post('/api/favorite/favorited', variables)
             .then(response => {
                 if (response.data.success) {
@@ -41,8 +33,8 @@ function Favorite(props) {
                     alert('Failed to get Favorite Information')
                 }
             })
-
-    }, [])
+            
+    }, [variables])
 
     function onClickFavorite() {
         if (user.userData && !user.userData.isAuth) {
@@ -57,6 +49,7 @@ function Favorite(props) {
                 alert('Failed to Add To Favorite')
             }
         })
+        
     }
     function removeFavorite() {
             //when we are already subscribed 
@@ -73,10 +66,10 @@ function Favorite(props) {
   return (
     <div>
       {Favorited ? 
-      <button onClick={removeFavorite} className='favBtn'><FaCheckCircle style={{position:'relative', top:'2px'}} /><span>   Added!</span></button> 
+      <button onClick={removeFavorite} className='favBtn'><FaHeart style={{position:'relative', top:'2px'}} /><span>   Added!</span></button> 
       : 
-      <button onClick={onClickFavorite} className='favBtn'><FaHeart style={{position:'relative', top:'2px'}} /><span>   Favorite</span></button>
-    }
+      <button onClick={onClickFavorite} className='favBtn'><FaRegHeart style={{position:'relative', top:'2px'}} /><span>   Favorite</span></button>
+    } 
     </div>
   )
 }

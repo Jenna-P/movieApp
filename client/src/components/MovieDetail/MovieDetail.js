@@ -17,18 +17,16 @@ function MovieDetail(props) {
     const [ShowMoreCasts, setShowMoreCasts] = useState([]); 
     const [Videos, setVideos] = useState(null);
     //const [ValidId, setValidId] = useState("");
-    
+    let paramsMovieId = props.match.params.movieID;
      
     const fetchMovies = async () => {
-        
-      let movieId = props.match.params.movieID;
-
-        const info = await axios.get(`${API_URL}/movie/${movieId}?api_key=${API_KEY}
+     
+        const info = await axios.get(`${API_URL}/movie/${paramsMovieId}?api_key=${API_KEY}
         `)
-        const credits = await axios.get(`${API_URL}/movie/${movieId}/credits?api_key=${API_KEY}
+        const credits = await axios.get(`${API_URL}/movie/${paramsMovieId}/credits?api_key=${API_KEY}
         `)
         
-        const videoData = await axios.get( `${API_URL}/movie/${movieId}/videos?api_key=${API_KEY}
+        const videoData = await axios.get( `${API_URL}/movie/${paramsMovieId}/videos?api_key=${API_KEY}
         `)
   
         if (videoData && videoData.data.results) {
@@ -78,7 +76,7 @@ function MovieDetail(props) {
         {/* cast grid */}
         <div style={{ display:'flex', justifyContent: 'space-between', alignItems:'center'}}>
                 <p style={{ color:'white', fontSize:'24px'}}>Top Billed Cast</p>
-                <Favorite movieInfo={Movie} movieId={Movie.id} userFrom={localStorage.getItem('userId')} />
+                <Favorite movieInfo={Movie} movieId={paramsMovieId} userFrom={localStorage.getItem('userId')} />
         </div>
         <div>
         <Row gutter={[16, 16]}>

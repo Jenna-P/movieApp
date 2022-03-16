@@ -22,8 +22,6 @@ const { auth } = require("../middleware/auth");
 
 // });
 
-
-
 router.post("/favorited", (req, res) => {
 //check to put that movie to favorite list 
     Favorite.find({ "movieId": req.body.movieId, "userFrom": req.body.userFrom })
@@ -39,8 +37,6 @@ router.post("/favorited", (req, res) => {
         })
 
 });
-
-
 
 router.post("/addToFavorite", (req, res) => {
     console.log(req.body)
@@ -59,17 +55,14 @@ router.post("/removeFromFavorite", (req, res) => {
         })
 });
 
-
 router.post("/getFavoredMovie", (req, res) => {
 
-    //Need to find all of the Users that I am subscribing to From Subscriber Collection 
+    //Need to find all of the Users favorite datas 
     Favorite.find({ 'userFrom': req.body.userFrom })
         .exec((err, favorites) => {
             if (err) return res.status(400).send(err);
             return res.status(200).json({ success: true, favorites })
         })
 });
-
-
 
 module.exports = router;

@@ -1,22 +1,19 @@
 import React, { useEffect, useState } from 'react'
-import { useSelector } from 'react-redux';
 import axios from 'axios'
 import { IMAGE_BASE_URL, POSTER_SIZE } from '../Config'
 import { Popover } from 'antd';
+import './favorite.css';
 
 function FavoritePage() {
-    const user = useSelector(state => state.user);
     const [Favorites, setFavorites] = useState([])
-    const [Loading, setLoading] = useState(true)
     let variable = { userFrom: localStorage.getItem('userId') }
 
-    const fetchFavoritedMovie = () => {
+    const fetchFavoredMovie = () => {
         axios.post('/api/favorite/getFavoredMovie', variable)
             .then(response => {
                 if (response.data.success) {
                     console.log(response.data.favorites)
                     setFavorites(response.data.favorites)
-                    setLoading(false)
                 } else {
                     alert('Failed to get subscription videos')
                 }
@@ -24,7 +21,7 @@ function FavoritePage() {
     }
 
     useEffect(() => {
-        fetchFavoritedMovie()
+        fetchFavoredMovie()
     }, [])
 
     const onClickDelete = (movieId, userFrom) => {
@@ -37,7 +34,7 @@ function FavoritePage() {
         axios.post('/api/favorite/removeFromFavorite', variables)
             .then(response => {
                 if (response.data.success) {
-                    fetchFavoritedMovie()
+                    fetchFavoredMovie()
                 } else {
                     alert('Failed to Remove From Favorite')
                 }
@@ -48,7 +45,7 @@ function FavoritePage() {
         const content = (
             <div>
                 {favorite.moviePost ?
-                    <img src={`${IMAGE_BASE_URL}${POSTER_SIZE}${favorite.moviePost}`} />
+                    <img src={`${IMAGE_BASE_URL}${POSTER_SIZE}${favorite.moviePost}`} alt={'movie poster'} />
                     : "no image"}
             </div>
         );
@@ -59,36 +56,31 @@ function FavoritePage() {
                 <td>{favorite.movieTitle}</td>
             </Popover>
 
-            <td>{favorite.movieRunTime} mins</td>
-            <td><button onClick={() => onClickDelete(favorite.movieId, favorite.userFrom)}> Remove </button></td>
+            <td>
+                <div className="table-wrapper">
+                {favorite.movieRunTime} mins
+                <button className="removeBtn" onClick={() => onClickDelete(favorite.movieId, favorite.userFrom)}> Remove </button>
+                </div>
+            </td>
         </tr>
     })
 
 
   return (
     <div>
-      <div style={{ width: '85%', margin: '3rem auto' }}>
+      <div style={{ width: '80%', margin: '3rem auto'}}>
             <h1 style={{ color: 'white'}}> My Favorite Movies </h1>
-            {/* {user.userData && !user.userData.isAuth ?
-                <div style={{ width: '100%', fontSize: '2rem', height: '500px', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
-                    <p>Please Log in first...</p>
-                    <a href="/login">Go to Login page</a>
-                </div>
-                :
-                !Loading && */}
-                <table style={{ color: 'white'}}>
+                <table>
                     <thead>
                         <tr>
                             <th>Movie Title</th>
-                            <th>Movie RunTime</th>
-                            <td>Remove from favorites</td>
+                            <th>RunTime</th>
                         </tr>
                     </thead>
                     <tbody>
                         {renderCards}
                     </tbody>
-                </table>
-            {/* } */}
+                </table>              
         </div>
     </div>
   )

@@ -67,6 +67,7 @@ router.get("/logout", auth, (req, res) => {
             success: true
         });
     });
+    
 });
 
 module.exports = router;
