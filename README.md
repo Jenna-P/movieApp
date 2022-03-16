@@ -4,7 +4,13 @@
 - NodeJs 
 - MongDB to sava user data
 - API to get movie datas 
-[TheMovieDB](https://www.themoviedb.org)
+[TheMovieDB](https://www.themoviedb.org) and [API Documentation](https://developers.themoviedb.org/3/getting-started/introduction)
+
+# Functions
+- Search and load more movies
+- Se movie details and trailer
+- Sign Up and Sign In 
+- After signed in : Add Movies to favorite list and remove from list 
 
 ## Available Scripts
 
