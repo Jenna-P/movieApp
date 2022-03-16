@@ -49,7 +49,7 @@ function Favorite(props) {
                 alert('Failed to Add To Favorite')
             }
         })
-        
+    
     }
     function removeFavorite() {
             //when we are already subscribed 
@@ -61,8 +61,10 @@ function Favorite(props) {
                         alert('Failed to Remove From Favorite')
                     }
                 })
+               
     }
 
+    
   return (
     <div>
       {Favorited ? 

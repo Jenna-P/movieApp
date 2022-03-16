@@ -78,3 +78,90 @@
   letter-spacing: 2px;
   border: 1px solid gray;
 }
+
+.mainImage-container {
+  height: 500px;
+}
+
+.title {
+  font-size: 40px;
+}
+
+.text-content {
+  margin-left: 4rem;
+  max-width: 600px;
+  width: 100%;
+}
+
+.text-content p {
+  font-size: 18px;
+}
+
+.movie-detail-title {
+  display: flex;
+}
+
+.movie-details {
+  display: flex;
+  color: white;
+}
+
+.movie-details p {
+  font-size: 17px;
+  position: absolute;
+  bottom: -25px;
+}
+
+.movie-details p:nth-child(2) {
+  position: absolute;
+  left: 222px;
+}
+
+@media (max-width: 767px) {
+  .mainImage-container {
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7));
+    background-position: center top;
+  }
+
+  .title {
+    font-size: 22px;
+    position: relative;
+    bottom: 50px;
+  }
+
+  .text-content {
+    margin-left: 2rem;
+    width: 75%;
+  }
+
+  .playBtn {
+    position: relative;
+    bottom: 60px;
+  }
+
+  .text-content p {
+    font-size: 15px;
+    position: relative;
+    bottom: 40px;
+  }
+
+  .movie-detail-title {
+    width: 60%;
+    margin: 0px;
+  }
+
+  .movie-detail-title p:nth-child(2) {
+    position: relative;
+    right: 80px;
+  }
+
+  .movie-details {
+    position: relative;
+    bottom: 12px;
+  }
+
+  .movie-details p:nth-child(2) {
+    position: relative;
+    left: 65px;
+  }
+}

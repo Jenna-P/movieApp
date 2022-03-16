@@ -48,3 +48,11 @@ tr:nth-child(even) {
   display: flex;
   justify-content: space-between;
 }
+
+a {
+  color: white;
+}
+
+a:hover {
+  color: rgb(223, 199, 22);
+}
