@@ -1,5 +1,4 @@
 import React from 'react'
-//import { FaCode } from "react-icons/fa";
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { API_KEY, API_URL } from '../Config';
