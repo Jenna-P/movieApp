@@ -1,10 +1,12 @@
-# React-Movie App 
+# React-Movie App (MERN Stack)
 
 - This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 - NodeJs 
 - MongDB to sava user data
 - API to get movie datas 
-[TheMovieDB](https://www.themoviedb.org) and [API Documentation](https://developers.themoviedb.org/3/getting-started/introduction)
+[TheMovieDB](https://www.themoviedb.org) and [API Documentation](https://developers.themoviedb.org/3/getting-started/introduction)</br>
+<img src="https://github.com/Jenna-P/movieApp/blob/master/client/public/landing.png?raw=true" width="500" /> </br>
+[MovieBox Link - DEMO](https://movie-box-2022.herokuapp.com)
 
 # Functions
 - Search and load more movies
