@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "description": "react boiler plate",
   "main": "index.js",
-  "engine": {
-    "node": "18.x",
+  "engines": {
+    "node": "18.14.0",
     "npm": "9.4.2"
   },
   "scripts": {
